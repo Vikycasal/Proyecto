@@ -1,6 +1,7 @@
 const estado = {
     aves : [],
-    comunas : []
+    comunas : [],
+    provincias : []
 }
 
 function rootReducer (state = estado, action) {
@@ -11,7 +12,31 @@ function rootReducer (state = estado, action) {
                 aves: action.payload
             }
             case "ORDEN_COMUNA":
-            let orderArray = action.payload==="asc" ? 
+                let ordenArray1 = action.payload==="asc" ? 
+                state.provincias.sort(function (a,b){
+                        if(a.provincia > b.provincia){
+                                return 1;
+                        }
+                        if(b.provincia > a.provincia){
+                                return -1;
+                        }
+                        return 0;
+                }) :
+                state.provincias.sort(function (a,b){
+                        if(a.provincia > b.provincia){
+                                return -1;
+                        }
+                        if(b.provincia > a.provincia){
+                                return 1;
+                        }
+                        return 0;
+                });
+                return{
+                        ...state,
+                        provincias :ordenArray1
+                }
+            case "ORDEN_COMUNA":
+            let ordenArray = action.payload==="asc" ? 
             state.comunas.sort(function (a,b){
                     if(a.comuna > b.comuna){
                             return 1;
@@ -32,7 +57,7 @@ function rootReducer (state = estado, action) {
             });
             return{
                     ...state,
-                    recipes:orderArray
+                    comunas :ordenArray
             }
         case "ORDEN_ALFABETICO":
             let alfabArr = action.payload === "A-Z" ? state.aves.sort(function (a, b) {
