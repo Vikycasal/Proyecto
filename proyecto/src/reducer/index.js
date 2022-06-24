@@ -11,7 +11,7 @@ function rootReducer (state = estado, action) {
                 ...state,
                 aves: action.payload
             }
-            case "ORDEN_COMUNA":
+             case "ORDEN_PROVINCIA":
                 let ordenArray1 = action.payload==="asc" ? 
                 state.provincias.sort(function (a,b){
                         if(a.provincia > b.provincia){
