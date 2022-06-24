@@ -13,6 +13,14 @@ export function ordenComunas(payload){
     }
 }
 
+export function ordenProvincias(payload){
+    return{
+            type: "ORDEN_PROVINCIAS",
+            payload
+    }
+}
+
+
 export const  ordenAlfabetico = (payload) => (dispatch) => {
 
    dispatch ({
